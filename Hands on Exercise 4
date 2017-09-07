@@ -1,0 +1,67 @@
+#Shesha-H-Shukla_MICA_AMMA_2017
+
+setwd("/Users/sheshashukla/Desktop/TRIMESTER 4/AMMA")
+
+# ------------- Class 5 - Assignment 4 ------------- 
+# Analysis of  student performance in Math by downloading https://archive.ics.uci.edu/ml/datasets/student+performance datasets
+# Answer following questions - 
+#         a) What is average Grades for Male and Female students
+#         b) Which combination of Guardian and Student Gender has highest Grades for G1, G2 and G3
+
+?read.csv
+students.per <- read.csv("/Users/sheshashukla/Desktop/TRIMESTER 4/AMMA/data_2017/student-por.csv", sep = ";")
+View(students.per)
+?table
+table(students.per$sex)
+
+# (a)
+# ----- calculating average marks of males -----
+marks.male <- 0
+
+for(a in 1:nrow(students.per)){
+if(students.per$sex[a] == "M")
+{marks.male = marks.male + students.per$G1[a] + students.per$G2[a] + students.per$G3[a]}
+  }
+
+print(marks.male)
+avg.marks.male <- marks.male/266
+avg.marks.male
+
+# ----- calculating average marks of females -----
+marks.female <- 0
+
+for(a in 1:nrow(students.per)){
+  if(students.per$sex[a] == "F")
+  {marks.female = marks.female + students.per$G1[a] + students.per$G2[a] + students.per$G3[a]}
+}
+
+print(marks.female)
+avg.marks.female <- marks.female/266
+avg.marks.female
+
+# (b)
+# G1
+for(a in 1:nrow(students.per)){
+  if(students.per$G1[a] == max(students.per[,31],na.rm = F) )
+  { print(a)
+    print(students.per$sex[a])
+    print(students.per$guardian[a])}
+}
+
+#G2
+for(a in 1:nrow(students.per)){
+  if(students.per$G2[a] == max(students.per[,32],na.rm = F) )
+  { print(a)
+    print(students.per$sex[a])
+    print(students.per$guardian[a])}
+}
+
+#G3
+for(a in 1:nrow(students.per)){
+  if(students.per$G3[a] == max(students.per[,33],na.rm = F) )
+  { print(a)
+    print(students.per$sex[a])
+    print(students.per$guardian[a])}
+}
+# ------------- Class 5 - Assignment 4 - Ends -------------
+
