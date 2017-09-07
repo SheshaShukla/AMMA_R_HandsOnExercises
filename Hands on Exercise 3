@@ -1,0 +1,31 @@
+#Shesha-H-Shukla_MICA_AMMA_2017
+
+setwd("/Users/sheshashukla/Desktop/TRIMESTER 4/AMMA")
+
+# ------------- Class 4 - Assignment 3 ------------- 
+#Create a data frame of “Custs”
+ #ID as distinct numerical values
+ #Income is normal distribution M: 250,000 and SD:75000
+ #Gender 60% are Male in the sample (Hint runif and ifelse)
+?seq
+identity.no <- seq(from = 1, to = 20, by=1)
+identity.no
+
+?rnorm
+income <- rnorm(20,mean = 250000,sd = 75000)
+income
+
+?runif
+?ifelse
+# gender <- ifelse(identity.no <= 12, "M","F")
+
+gender <- rep("Fem", 20)
+i <- sample(1:20, 20, replace = FALSE) 
+for(q in 1:20)
+{
+  if(gender[i[q]] == "Fem" && q >= 12){gender[i[q]] <- "Male"}
+}
+
+custs.df <- data.frame(identity.no,income,gender)
+View(custs.df)
+# ------------- Class 4 - Assignment 3 Ends-------------
