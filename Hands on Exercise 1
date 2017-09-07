@@ -1,0 +1,42 @@
+#Shesha-H-Shukla_MICA_AMMA_2017
+
+setwd("/Users/sheshashukla/Desktop/TRIMESTER 4/AMMA")
+# ------------- PDF - Assignment 1 - Q(1) ------------- 
+#Install a package - data.table and give a name of function starting character "d“
+install.packages("data.table")
+library(data.table)
+#function starting with character "d": datatable.optimize
+#data.table reads the global option datatable.optimize 
+#to figure out what level of optimisation is required
+# ------------- PDF - Assignment 1 - Q(1) Ends ------------- 
+
+# ------------- PDF - Assignment 1 - Q(2) ------------- 
+#Install and Load package-datasets.Use “women” data frame available in this package
+#Find number of woman with height more than average but weight less than average
+library(datasets)
+library(help=datasets)
+attach(women)
+women
+
+women$height_gt_avg <- women$height>mean(women$height)
+women$weight_lt_avg <- women$weight<mean(women$weight)
+
+table(women$height_gt_avg,women$weight_lt_avg)
+View(women)
+
+# OR
+# mean.height <- mean(women$height)
+# mean.weight <- mean(women$weight)
+# women.df <- subset(women, height > mean.height, weight < mean.weight)
+# View(women.df)
+# ------------- PDF - Assignment 1 - Q(2) Ends ------------- 
+
+# ------------- PDF - Assignment 1 - Q(3) -------------
+install.packages("XML")
+library(XML)
+
+table.cities <- readHTMLTable("http://www.worldatlas.com/articles/the-biggest-cities-in-india.html")
+table.cities.df <- as.data.frame(table.cities)
+colnames(table.cities.df) <- c("Rank", "Metro Area", "Metro Population")
+View(table.cities.df)
+# ------------- PDF - Assignment 1 - Q(3) Ends -------------
