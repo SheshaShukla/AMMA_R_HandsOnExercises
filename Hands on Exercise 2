@@ -1,0 +1,30 @@
+#Shesha-H-Shukla_MICA_AMMA_2017
+
+setwd("/Users/sheshashukla/Desktop/TRIMESTER 4/AMMA")
+
+# ------------- Class 3 - Assignment 2 - Q(1) ------------- 
+#Download a csv file from https://data.oecd.org/healthstat/infant- mortality-rates.htm 
+#and read the csv file and remove the last variable
+infant.mortality <- read.csv("/Users/sheshashukla/Desktop/TRIMESTER 4/AMMA/data_2017/DP_LIVE_26072017062743626.csv")
+View(infant.mortality)
+str(infant.mortality)
+summary(infant.mortality)
+
+infant.mortality1 <- infant.mortality[,-8]
+View(infant.mortality1)
+# ------------- Class 3 - Assignment 2 - Q(1) Ends ------------- 
+
+# ------------- Class 3 - Assignment 2 - Q(2) ------------- 
+#Read 2 table from html page https://en.wikipedia.org/wiki/India%E2%80%93Pakistan_cricket_rivalry¬
+#and find number of ODI Matches won by India
+
+install.packages("htmltab")
+library(htmltab)
+Odi.Records.table <- htmltab("https://en.wikipedia.org/wiki/India%E2%80%93Pakistan_cricket_rivalry",26)
+Odi.Records.df <- as.data.frame(Odi.Records.table)
+View(Odi.Records.df)
+
+#?rowSums
+#Odi.Records.df$MatchesWon <- rowSums(Odi.Records.df[,2:5], na.rm = TRUE)
+#Odi.Records.df$MatchesWon <- transform(Odi.Records.table, sum=rowSums(Odi.Records.df[2,2:3]))
+# ------------- Class 3 - Assignment 2 - Q(2) Ends ------------- 
