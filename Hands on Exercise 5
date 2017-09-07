@@ -1,0 +1,84 @@
+#Shesha-H-Shukla_MICA_AMMA_2017
+
+setwd("/Users/sheshashukla/Desktop/TRIMESTER 4/AMMA")
+
+# ------------- Class 6 - Assignment 5 ------------- 
+# Q(1):Combine the Emp and Dept datasets & create a data which has dept name & location along with emp info
+df.employee.data <- read.csv('/Users/sheshashukla/Desktop/TRIMESTER 4/AMMA/data_2017/Emp.csv')
+str(df.employee.data)
+
+df.department.data <- read.csv('/Users/sheshashukla/Desktop/TRIMESTER 4/AMMA/data_2017/Dept.csv')
+str(df.department.data)
+
+df.data <- merge(df.employee.data,df.department.data, by = 'DEPTNO', all.x = TRUE)
+length(unique(df.data$DEPTNO)) == nrow(df.data) #checking for any duplicate customer ID
+View(df.data)
+
+# Q(2): Find the average salary by location
+#Removing missing values
+df.data.final <- df.data[-c(13,14),]
+View(df.data.final)
+?aggregate
+View(locavg.df <- aggregate(SAL ~ LOC,df.data.final, mean))
+
+# Q(3): Create a dataset which has name of employee along with its manager name and find the manager which has 
+#        the most direct reportees
+Emp_Mngr_Data <- data.frame(Employee = c("Ashish","Bunty","Darshan","Shina", "Kunal","Kush","Akansha", "Rhea", "Karina", "Arsh"), 
+                            Manager = c("Tarun", "Dina","Abhijeet","Abhijeet","Tarun", "Dina", "Dina", "Dina","Tarun", "Dina"))
+View(Emp_Mngr_Data)
+Ab <- 0
+Di <- 0
+Ta <- 0
+for(c in 1:nrow(Emp_Mngr_Data))
+{
+  if(Emp_Mngr_Data$Manager[c] == "Abhijeet")
+  {
+   Ab <- Ab+1 
+  }
+  
+  if(Emp_Mngr_Data$Manager[c] == "Dina")
+  {
+   Di <- Di+1  
+  }
+  
+  if(Emp_Mngr_Data$Manager[c] == "Tarun")
+  {
+   Ta <- Ta+1
+  }
+}
+Ab
+Di
+Ta
+paste("The manager with the most direct reportees is Dina with", Di, "number of reportees")
+
+# Q(4):  If salary increment across levels are as follow, what would be salary after the increment
+"
+Role	Increment
+ANALYST	15%
+CLERK	12.50%
+MANAGER	10.20%
+PRESIDENT	5.70%
+SALESMAN	13.30%
+"
+df.data.final$SALNEW <- 0
+
+for(n in 1:nrow(df.data.final))
+{
+  if(df.data.final$JOB[n] == "ANALYST")
+  {df.data.final$SALNEW[n] <- df.data.final$SAL[n] + ((15*df.data.final$SAL[n])/100)}
+  
+  if(df.data.final$JOB[n] == "CLERK")
+  {df.data.final$SALNEW[n] <- df.data.final$SAL[n] + ((12.5*df.data.final$SAL[n])/100)}
+  
+  if(df.data.final$JOB[n] == "MANAGER")
+  {df.data.final$SALNEW[n] <- df.data.final$SAL[n] + ((10.2*df.data.final$SAL[n])/100)}
+  
+  if(df.data.final$JOB[n] == "PRESIDENT")
+  {df.data.final$SALNEW[n] <- df.data.final$SAL[n] + ((5.7*df.data.final$SAL[n])/100)}
+  
+  if(df.data.final$JOB[n] == "SALESMAN")
+  {df.data.final$SALNEW[n] <- df.data.final$SAL[n] + ((13.3*df.data.final$SAL[n])/100)}
+}
+
+View(df.data.final)
+# ------------- Class 6 - Assignment 5 Ends------------- 
